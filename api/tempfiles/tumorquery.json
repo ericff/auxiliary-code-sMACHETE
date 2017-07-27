@@ -1,0 +1,12 @@
+{
+    "entity": "files",
+    "hasExperimentalStrategy":  "RNA-Seq",
+    "hasDataSubtype": "Unaligned reads",
+    "hasSample":{
+	"hasSampleType":"Primary Tumor"
+    } , 
+    "hasCase":{
+	"hasDiseaseType": "zzzz"
+    },
+    "offset": 0
+}

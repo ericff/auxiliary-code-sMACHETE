@@ -1,0 +1,16 @@
+FROM ubuntu:14.04
+RUN apt-get update && apt-get -y upgrade
+RUN apt-get install -y software-properties-common
+RUN add-apt-repository -y ppa:ubuntu-toolchain-r/test
+RUN apt-get update
+RUN apt-get install -y g++-4.9
+RUN apt-get -y install cmake git build-essential clang wget zlib1g-dev
+RUN git clone https://github.com/simongog/sdsl-lite.git
+RUN cd sdsl-lite && ./install.sh /usr/
+RUN cd /opt/ && wget https://github.com/gmarcais/Jellyfish/releases/download/v2.2.6/jellyfish-2.2.6.tar.gz && tar -xvzf jellyfish-2.2.6.tar.gz && rm jellyfish-2.2.6.tar.gz
+RUN cd /opt/jellyfish-2.2.6 && ./configure --prefix=/opt/jellyfish-2.2.6 && make -j 4 && make install
+RUN cp -r /opt/jellyfish-2.2.6/include/* /usr/include/
+RUN cp -r /opt/jellyfish-2.2.6/lib/* /usr/lib/
+RUN cd /opt && git clone https://github.com/Kingsford-Group/bloomtree.git
+RUN cd /opt/bloomtree/src && make
+ENV PATH=$PATH:/opt/bloomtree/src:/opt/jellyfish-2.2.6/bin/

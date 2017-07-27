@@ -1,0 +1,14 @@
+FROM nathankw/centos6
+#Comes with Python v2.7.10, JRE v1.8.0_91, and R v3.2.3.
+#Also comes with Perl v5.10.1, which was installed as part of the "Development Tools" package.
+#The directories /srv/src and /srv/software are created in the base image. 
+MAINTAINER Eric Freeman <ericff@stanford.edu>
+
+RUN pip install biopython
+
+RUN pip install sevenbridges-python
+
+ENTRYPOINT []
+LABEL version="1.0" description="for bloomtree queries"
+
+CMD ["/bin/bash"]

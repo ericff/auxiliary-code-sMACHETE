@@ -1,0 +1,24 @@
+FROM ubuntu:14.04
+RUN apt-get update && apt-get install -y \
+autoconf \
+automake \
+make \
+g++ \
+gcc \
+build-essential \
+zlib1g-dev \
+libgsl0-dev \
+python \
+curl \
+git \
+wget \
+unzip
+RUN apt-get install python-pip python-dev build-essential -y &&\
+pip install --upgrade pip &&\
+pip install --upgrade virtualenv
+RUN pip install docopt
+RUN mkdir /opt/test_files
+COPY test_files /opt/test_files
+COPY script /opt
+COPY Dockerfile /opt/
+MAINTAINER Marko Petkovic, Seven Bridges Genomics, <marko.petkovic@sbgenomics.com>
